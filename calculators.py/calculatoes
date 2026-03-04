@@ -1,0 +1,20 @@
+import streamlit as st
+
+def render_agro_calculators():
+    st.title("🧮 Агро-Калькулятори")
+    
+    tab1, tab2 = st.tabs(["NPK Добрива", "Витрата пального"])
+    
+    with tab1:
+        st.subheader("Розрахунок потреби в добривах")
+        crop = st.selectbox("Оберіть культуру", ["Пшениця", "Кукурудза", "Соняшник", "Рапс"])
+        area = st.number_input("Площа поля (га)", min_value=0.1, value=1.0)
+        
+        # Базові норми (кг/га)
+        norms = {"Пшениця": 150, "Кукурудза": 180, "Соняшник": 60, "Рапс": 120}
+        total = norms[crop] * area
+        
+        st.success(f"Загальна потреба в азотних добривах для {crop}: **{total:.2f} кг**")
+
+    with tab2:
+        st.info("Модуль розрахунку пального буде доступний у наступному оновленні.")
