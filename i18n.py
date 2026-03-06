@@ -61,6 +61,17 @@ TEXT = {
     "module_smart_calculators": {"ua": "Розумні калькулятори", "en": "Smart Calculators", "ru": "Умные калькуляторы"},
     "module_diagnostics": {"ua": "Діагностика", "en": "Diagnostics", "ru": "Диагностика"},
     "module_users_access": {"ua": "Користувачі та доступ", "en": "Users & Access", "ru": "Пользователи и доступ"},
+    "module_settings": {"ua": "Налаштування", "en": "Settings", "ru": "Настройки"},
+    "settings_page_hint": {
+        "ua": "Керуйте мовою інтерфейсу AgroOS.",
+        "en": "Manage AgroOS interface language.",
+        "ru": "Управляйте языком интерфейса AgroOS.",
+    },
+    "settings_lang_hint": {
+        "ua": "Зміна застосовується одразу для всіх модулів.",
+        "en": "Changes are applied instantly across all modules.",
+        "ru": "Изменения применяются сразу во всех модулях.",
+    },
 
     "nav_home": {"ua": "Дім", "en": "Home", "ru": "Дом"},
     "nav_ndvi": {"ua": "NDVI", "en": "NDVI", "ru": "NDVI"},

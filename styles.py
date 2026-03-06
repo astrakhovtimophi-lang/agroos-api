@@ -51,6 +51,7 @@ MENU_SECTIONS = [
     (
         "section_admin",
         [
+            {"path": "pages/26_Settings.py", "label_key": "module_settings", "icon": "⚙️"},
             {"path": "pages/19_Users_Access.py", "label_key": "module_users_access", "icon": "👤"},
         ],
     ),
