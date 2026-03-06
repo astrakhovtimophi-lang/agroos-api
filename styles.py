@@ -175,6 +175,88 @@ footer{visibility:hidden;}
   font-size: 13px;
 }
 
+.ops-menu-head{
+  margin: 2px 0 10px;
+}
+.ops-menu-title{
+  margin: 4px 2px 10px;
+  font-family: Manrope, Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  color: var(--text);
+}
+
+.st-key-ops_section_switch [data-testid="stRadio"] > div{
+  display: block;
+}
+.st-key-ops_section_switch [role="radiogroup"]{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.st-key-ops_section_switch label[data-baseweb="radio"]{
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.st-key-ops_section_switch label[data-baseweb="radio"]:hover{
+  transform: translateY(-1px);
+  border-color: rgba(0,255,136,.35);
+  box-shadow: 0 10px 24px rgba(0,0,0,.24);
+}
+.st-key-ops_section_switch label[data-baseweb="radio"] > div:first-child{
+  display: none;
+}
+.st-key-ops_section_switch label[data-baseweb="radio"] > div:last-child{
+  padding: 10px 14px;
+}
+.st-key-ops_section_switch label[data-baseweb="radio"] > div:last-child p{
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+}
+.st-key-ops_section_switch label[data-baseweb="radio"]:has(input:checked){
+  border-color: rgba(0,255,136,.52);
+  background: linear-gradient(90deg, rgba(0,255,136,.24), rgba(0,195,255,.16));
+  box-shadow: 0 14px 28px rgba(0,0,0,.28);
+}
+
+.st-key-ops_menu_grid{
+  margin-top: 2px;
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 18px;
+  background:
+    radial-gradient(700px 180px at 10% -10%, rgba(0,255,136,.12), transparent 75%),
+    radial-gradient(700px 180px at 90% -10%, rgba(0,195,255,.12), transparent 75%),
+    rgba(8,12,22,.72);
+  box-shadow: 0 16px 40px rgba(0,0,0,.30);
+}
+.st-key-ops_menu_grid a[data-testid="stPageLink-NavLink"]{
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  min-height: 42px;
+  padding: 7px 10px !important;
+  margin-top: 6px;
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.st-key-ops_menu_grid a[data-testid="stPageLink-NavLink"]:hover{
+  transform: translateY(-1px);
+  border-color: rgba(0,255,136,.42);
+  background: linear-gradient(90deg, rgba(0,255,136,.15), rgba(0,195,255,.11));
+  box-shadow: 0 10px 24px rgba(0,0,0,.28);
+}
+.st-key-ops_menu_grid a[data-testid="stPageLink-NavLink"] p{
+  color: var(--text);
+  font-weight: 700;
+  font-size: 13px;
+}
+
 .top-nav-pop [data-testid="stPopover"] > div > button{
   width: 100%;
   border: 1px solid rgba(255,255,255,.1);
@@ -523,26 +605,46 @@ def render_top_menu():
         unsafe_allow_html=True,
     )
 
-    nav_cols = st.columns([1, 1, 1, 1, 1, 1.35], gap="small")
+    section_keys = [section for section, _ in MENU_SECTIONS]
+    default_section = "section_operations" if "section_operations" in section_keys else section_keys[0]
+    if "top_menu_section" not in st.session_state or st.session_state["top_menu_section"] not in section_keys:
+        st.session_state["top_menu_section"] = default_section
 
-    for col, (section, items) in zip(nav_cols[:-1], MENU_SECTIONS):
-        with col:
-            st.markdown('<div class="top-nav-pop">', unsafe_allow_html=True)
-            with st.popover(tr(section), use_container_width=True):
-                left, right = st.columns(2)
-                split_at = (len(items) + 1) // 2
-                with left:
-                    for item in items[:split_at]:
-                        st.page_link(item["path"], label=tr(item["label_key"]), icon=item["icon"])
-                with right:
-                    for item in items[split_at:]:
-                        st.page_link(item["path"], label=tr(item["label_key"]), icon=item["icon"])
-            st.markdown("</div>", unsafe_allow_html=True)
+    switch_col, cta_col = st.columns([4.6, 1.4], gap="small")
 
-    with nav_cols[-1]:
+    with switch_col:
+        st.markdown('<div class="ops-menu-head">', unsafe_allow_html=True)
+        with st.container(key="ops_section_switch"):
+            st.radio(
+                tr("menu_sections"),
+                options=section_keys,
+                key="top_menu_section",
+                horizontal=True,
+                format_func=lambda x: tr(x),
+                label_visibility="collapsed",
+            )
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    with cta_col:
         st.markdown('<div class="top-nav-cta">', unsafe_allow_html=True)
         st.page_link("pages/21_AI_Agro_Assistant.py", label=tr("open_ai_assistant"), icon="🤖")
         st.markdown("</div>", unsafe_allow_html=True)
+
+    active_section = st.session_state["top_menu_section"]
+    active_items = []
+    for section, items in MENU_SECTIONS:
+        if section == active_section:
+            active_items = items
+            break
+
+    st.markdown(f'<div class="ops-menu-title">{tr(active_section)}</div>', unsafe_allow_html=True)
+
+    with st.container(key="ops_menu_grid"):
+        cols_count = min(4, max(1, len(active_items)))
+        cols = st.columns(cols_count, gap="small")
+        for idx, item in enumerate(active_items):
+            with cols[idx % cols_count]:
+                st.page_link(item["path"], label=tr(item["label_key"]), icon=item["icon"])
 
 
 def render_mobile_menu():
