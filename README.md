@@ -2,6 +2,10 @@
 
 Streamlit web app for agronomy workflows: field map, NDVI, diagnostics, operations, assistant, reports.
 
+## Production URL (main public site)
+
+`https://agroos-ai.streamlit.app`
+
 ## Local run (Windows PowerShell)
 
 ```powershell
@@ -23,8 +27,8 @@ Open: `http://localhost:8502`
 5. Set **Main file path**: `main.py`
 6. Click **Deploy**.
 
-After deploy you get a public URL like:
-`https://your-app-name.streamlit.app`
+Current public URL:
+`https://agroos-ai.streamlit.app`
 
 ## Push to GitHub (first time)
 
