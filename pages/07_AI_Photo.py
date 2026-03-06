@@ -1,5 +1,6 @@
 ﻿import numpy as np
 import streamlit as st
+from i18n import tr
 from PIL import Image
 
 from agro_utils import append_photo_diag, add_event, field_names_and_features, now_iso
@@ -7,7 +8,7 @@ from styles import apply_styles
 
 apply_styles()
 
-st.title("🧪 AI Photo Diagnostics")
+st.title(tr("module_photo_diag"))
 st.caption("Upload a photo, mark visible symptoms, and get probability-based diagnosis + action plan.")
 
 

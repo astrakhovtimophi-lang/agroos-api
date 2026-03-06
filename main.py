@@ -1,45 +1,29 @@
 ﻿import streamlit as st
 
+st.set_page_config(page_title="AgroOS", page_icon="🌿", layout="wide", initial_sidebar_state="expanded")
+
 # --- PWA (manifest + service worker) ---
 st.markdown("""
 <link rel="manifest" href="/static/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/icon-192.png">
 <meta name="theme-color" content="#00ff88">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AgroOS">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register("/static/sw.js").catch(()=>{});
+      navigator.serviceWorker.register("/static/sw.js?v=2").catch(()=>{});
     });
   }
 </script>
 """, unsafe_allow_html=True)
 
 from styles import apply_styles
-from i18n import LANGUAGES, INV_LANG, tr, ensure_lang
-from settings_store import set_lang
-
-st.set_page_config(page_title="AgroOS", page_icon="🌿", layout="wide", initial_sidebar_state="expanded")
+from i18n import tr, ensure_lang
 
 apply_styles()
 ensure_lang()
-
-with st.sidebar:
-    with st.expander("⚙️ " + tr("settings"), expanded=False):
-        current_name = INV_LANG.get(st.session_state["lang"], "English")
-
-        lang_name = st.selectbox(
-            tr("language"),
-            list(LANGUAGES.keys()),
-            index=list(LANGUAGES.keys()).index(current_name) if current_name in LANGUAGES else 0,
-            key="lang_select_main",
-        )
-
-        new_lang = LANGUAGES[lang_name]
-        if new_lang != st.session_state["lang"]:
-            st.session_state["lang"] = new_lang
-            set_lang(new_lang)
-            st.rerun()
-
-        st.caption(tr("pages_hint"))
 
 st.markdown(
     '<div class="hero-wrap">'

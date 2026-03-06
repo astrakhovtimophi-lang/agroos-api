@@ -9,6 +9,7 @@ import folium
 import numpy as np
 import pandas as pd
 import streamlit as st
+from i18n import tr
 from folium.plugins import Draw
 from pyproj import Transformer
 from shapely.affinity import rotate
@@ -21,7 +22,7 @@ from styles import apply_styles
 
 apply_styles()
 
-st.title("Tractor AutoSteer Assist")
+st.title(tr("module_autosteer"))
 st.caption("Route planning for field operations: AB passes, overlap control, turn model, estimate of time and distance.")
 st.warning("Safety: this module does not control machinery. It only generates a route plan for the operator.")
 

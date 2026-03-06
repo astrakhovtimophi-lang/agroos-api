@@ -4,6 +4,7 @@ from datetime import date
 import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
+from i18n import tr
 from matplotlib.backends.backend_pdf import PdfPages
 
 from agro_utils import (
@@ -18,7 +19,7 @@ from styles import apply_styles
 
 apply_styles()
 
-st.title("📄 PDF Reports")
+st.title(tr("module_pdf_reports"))
 st.caption("Generate field report for selected period in one click.")
 
 field_names, _ = field_names_and_features()

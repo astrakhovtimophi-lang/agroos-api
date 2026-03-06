@@ -2,13 +2,14 @@
 
 import pandas as pd
 import streamlit as st
+from i18n import tr
 
 from agro_utils import add_event, field_names_and_features, load_events, sync_planner_to_events
 from styles import apply_styles
 
 apply_styles()
 
-st.title("🗓 Field Timeline")
+st.title(tr("module_timeline"))
 st.caption("History of operations, notes, diagnostics and costs by field.")
 
 if st.button("Sync from Planner/Journal", key="timeline_sync"):

@@ -2,13 +2,14 @@
 
 import pandas as pd
 import streamlit as st
+from i18n import tr
 
 from agro_utils import add_economic_record, add_event, field_names_and_features, load_economics, load_events
 from styles import apply_styles
 
 apply_styles()
 
-st.title("💹 Field Economics")
+st.title(tr("module_economics"))
 st.caption("Cost, margin and ROI by field and crop.")
 
 field_names, _ = field_names_and_features()

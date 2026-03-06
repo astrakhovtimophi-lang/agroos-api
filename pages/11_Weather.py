@@ -3,12 +3,13 @@
 import pandas as pd
 import requests
 import streamlit as st
+from i18n import tr
 
 from styles import apply_styles
 
 apply_styles()
 
-st.title("🌦 Weather + Field Conditions")
+st.title(tr("module_weather"))
 st.caption("Current weather, 14-day outlook, cumulative precipitation, GDD and operation windows.")
 
 c1, c2, c3 = st.columns(3)

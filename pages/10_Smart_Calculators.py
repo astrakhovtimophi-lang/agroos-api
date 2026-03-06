@@ -5,7 +5,7 @@ from i18n import tr, ensure_lang
 apply_styles()
 ensure_lang()
 
-st.title("🧮 " + (tr("calculators_title") if tr("calculators_title") != "calculators_title" else "Smart Calculators"))
+st.title(tr("module_smart_calculators"))
 st.caption("ROI / норма высева / баковая смесь + удобрения + конвертеры")
 
 tab1, tab2, tab3, tab4, tab5 = st.tabs(["Yield/ROI", "Seeding rate", "Spray mix", "Fertilizer", "Converters"])

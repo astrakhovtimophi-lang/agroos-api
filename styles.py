@@ -1,58 +1,61 @@
 ﻿import streamlit as st
 
+from i18n import render_language_picker, render_language_settings, tr
+
 MENU_SECTIONS = [
     (
-        "Start",
+        "section_start",
         [
-            {"path": "main.py", "label": "Landing", "icon": "🌿"},
-            {"path": "pages/01_Home.py", "label": "Command Home", "icon": "🏠"},
-            {"path": "pages/21_AI_Agro_Assistant.py", "label": "AI Agro Assistant", "icon": "🤖"},
-            {"path": "pages/22_Farm_Operations_Center.py", "label": "Operations Center", "icon": "🧭"},
+            {"path": "main.py", "label_key": "module_landing", "icon": "🌿"},
+            {"path": "pages/01_Home.py", "label_key": "module_home", "icon": "🏠"},
+            {"path": "pages/21_AI_Agro_Assistant.py", "label_key": "module_ai_assistant", "icon": "🤖"},
+            {"path": "pages/22_Farm_Operations_Center.py", "label_key": "module_ops_center", "icon": "🧭"},
         ],
     ),
     (
-        "Monitoring",
+        "section_monitoring",
         [
-            {"path": "pages/02_NDVI_Auto.py", "label": "NDVI Pro", "icon": "🌿"},
-            {"path": "pages/04_Zones_Field.py", "label": "VRA Zones", "icon": "🧩"},
-            {"path": "pages/16_NDVI_Trends_Alerts.py", "label": "NDVI Trends", "icon": "📉"},
-            {"path": "pages/23_Yield_Map_Import.py", "label": "Yield Map Import", "icon": "🌾"},
-            {"path": "pages/05_Soil_SoilGrids.py", "label": "SoilGrids", "icon": "🧱"},
-            {"path": "pages/06_Soil_Map_Field.py", "label": "Soil Map", "icon": "🗺️"},
-            {"path": "pages/11_Weather.py", "label": "Weather", "icon": "🌦️"},
+            {"path": "pages/02_NDVI_Auto.py", "label_key": "module_ndvi_pro", "icon": "🌿"},
+            {"path": "pages/04_Zones_Field.py", "label_key": "module_vra_zones", "icon": "🧩"},
+            {"path": "pages/16_NDVI_Trends_Alerts.py", "label_key": "module_ndvi_trends", "icon": "📉"},
+            {"path": "pages/23_Yield_Map_Import.py", "label_key": "module_yield_import", "icon": "🌾"},
+            {"path": "pages/05_Soil_SoilGrids.py", "label_key": "module_soilgrids", "icon": "🧱"},
+            {"path": "pages/06_Soil_Map_Field.py", "label_key": "module_soil_map", "icon": "🗺️"},
+            {"path": "pages/11_Weather.py", "label_key": "module_weather", "icon": "🌦️"},
         ],
     ),
     (
-        "Operations",
+        "section_operations",
         [
-            {"path": "pages/03_Field_Manager_Map.py", "label": "Field Manager", "icon": "🗺️"},
-            {"path": "pages/24_Field_Groups_Compare.py", "label": "Field Groups + Compare", "icon": "🧭"},
-            {"path": "pages/25_Tractor_Autosteer_Assist.py", "label": "Tractor AutoSteer Assist", "icon": "🚜"},
-            {"path": "pages/12_Planner_Journal.py", "label": "Planner & Journal", "icon": "📒"},
-            {"path": "pages/15_Alerts_Notifications.py", "label": "Smart Alerts", "icon": "🔔"},
-            {"path": "pages/14_Field_Timeline.py", "label": "Field Timeline", "icon": "🗓️"},
-            {"path": "pages/07_AI_Photo.py", "label": "Photo Diagnostics", "icon": "📷"},
-            {"path": "pages/18_Nutrition_Recommendations.py", "label": "Nutrition", "icon": "🌱"},
+            {"path": "pages/03_Field_Manager_Map.py", "label_key": "module_field_manager", "icon": "🗺️"},
+            {"path": "pages/24_Field_Groups_Compare.py", "label_key": "module_field_groups", "icon": "🧭"},
+            {"path": "pages/25_Tractor_Autosteer_Assist.py", "label_key": "module_autosteer", "icon": "🚜"},
+            {"path": "pages/12_Planner_Journal.py", "label_key": "module_planner", "icon": "📒"},
+            {"path": "pages/15_Alerts_Notifications.py", "label_key": "module_smart_alerts", "icon": "🔔"},
+            {"path": "pages/14_Field_Timeline.py", "label_key": "module_timeline", "icon": "🗓️"},
+            {"path": "pages/07_AI_Photo.py", "label_key": "module_photo_diag", "icon": "📷"},
+            {"path": "pages/18_Nutrition_Recommendations.py", "label_key": "module_nutrition", "icon": "🌱"},
         ],
     ),
     (
-        "Analytics",
+        "section_analytics",
         [
-            {"path": "pages/08_Yield_Prediction.py", "label": "Yield Prediction", "icon": "📈"},
-            {"path": "pages/17_Field_Economics.py", "label": "Field Economics", "icon": "💹"},
-            {"path": "pages/20_PDF_Reports.py", "label": "PDF Reports", "icon": "📄"},
-            {"path": "pages/09_Calculators.py", "label": "Calculators", "icon": "🧮"},
-            {"path": "pages/10_Smart_Calculators.py", "label": "Smart Calculators", "icon": "🧠"},
-            {"path": "pages/13_Diagnostics.py", "label": "Diagnostics", "icon": "🛠️"},
+            {"path": "pages/08_Yield_Prediction.py", "label_key": "module_yield_prediction", "icon": "📈"},
+            {"path": "pages/17_Field_Economics.py", "label_key": "module_economics", "icon": "💹"},
+            {"path": "pages/20_PDF_Reports.py", "label_key": "module_pdf_reports", "icon": "📄"},
+            {"path": "pages/09_Calculators.py", "label_key": "module_calculators", "icon": "🧮"},
+            {"path": "pages/10_Smart_Calculators.py", "label_key": "module_smart_calculators", "icon": "🧠"},
+            {"path": "pages/13_Diagnostics.py", "label_key": "module_diagnostics", "icon": "🛠️"},
         ],
     ),
     (
-        "Admin",
+        "section_admin",
         [
-            {"path": "pages/19_Users_Access.py", "label": "Users & Access", "icon": "👤"},
+            {"path": "pages/19_Users_Access.py", "label_key": "module_users_access", "icon": "👤"},
         ],
     ),
 ]
+
 
 
 def apply_styles(render_menu: bool = True):
@@ -217,14 +220,64 @@ div[data-testid="stPopoverContent"] a[data-testid="stPageLink-NavLink"] p{
   color: var(--text);
 }
 
+.st-key-mobile_dock{
+  display: none;
+}
+.st-key-mobile_dock .mobile-dock-shell{
+  margin-top: 8px;
+}
+.st-key-mobile_dock [data-testid="stPageLink-NavLink"],
+.st-key-mobile_dock [data-testid="stPopover"] > div > button{
+  min-height: 48px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+  box-shadow: 0 8px 22px rgba(0,0,0,.30);
+}
+.st-key-mobile_dock [data-testid="stPageLink-NavLink"] p{
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.05;
+  text-align: center;
+}
+.st-key-mobile_dock [data-testid="stPopover"] > div > button{
+  font-size: 11px;
+  font-weight: 700;
+}
+
 @media (max-width: 980px){
-  .top-nav-shell{
-    position: relative;
-    top: 0;
-  }
+  .top-nav-shell,
   .top-nav-pop,
-  .top-nav-cta{
+  .top-nav-cta,
+  .sidebar-brand{
     display: none;
+  }
+  section[data-testid="stSidebar"]{
+    display: none;
+  }
+  .footer{
+    display: none;
+  }
+  .block-container{
+    padding-bottom: 8.2rem;
+  }
+  .st-key-mobile_dock{
+    display: block;
+    position: fixed;
+    left: 8px;
+    right: 8px;
+    bottom: calc(8px + env(safe-area-inset-bottom));
+    z-index: 1001;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.14);
+    background:
+      radial-gradient(700px 180px at 10% -10%, rgba(0,255,136,.16), transparent 75%),
+      radial-gradient(700px 180px at 90% -10%, rgba(0,195,255,.16), transparent 75%),
+      rgba(8,12,22,.84);
+    box-shadow: 0 18px 45px rgba(0,0,0,.45);
+    backdrop-filter: blur(12px);
+    animation: topNavReveal .4s ease both;
   }
 }
 
@@ -422,6 +475,7 @@ section[data-testid="stSidebar"] a[data-testid="stPageLink-NavLink"] p{
     if render_menu:
         render_top_menu()
         render_sidebar_menu()
+        render_mobile_menu()
 
 
 def sidebar_brand():
@@ -444,13 +498,13 @@ def sidebar_brand():
 def render_sidebar_menu():
     with st.sidebar:
         sidebar_brand()
-        with st.expander("Quick modules", expanded=False):
-            st.markdown('<div class="menu-hint">Compact fallback menu</div>', unsafe_allow_html=True)
+        render_language_settings(expanded=False, widget_key="lang_select_sidebar", show_hint=False)
+        with st.expander(tr("quick_modules"), expanded=False):
+            st.markdown(f'<div class="menu-hint">{tr("compact_menu_hint")}</div>', unsafe_allow_html=True)
             for section, items in MENU_SECTIONS:
-                st.caption(section)
+                st.caption(tr(section))
                 for item in items:
-                    st.page_link(item["path"], label=item["label"], icon=item["icon"])
-
+                    st.page_link(item["path"], label=tr(item["label_key"]), icon=item["icon"])
 
 def render_top_menu():
     st.markdown(
@@ -473,20 +527,43 @@ def render_top_menu():
     for col, (section, items) in zip(nav_cols[:-1], MENU_SECTIONS):
         with col:
             st.markdown('<div class="top-nav-pop">', unsafe_allow_html=True)
-            with st.popover(section, use_container_width=True):
+            with st.popover(tr(section), use_container_width=True):
                 left, right = st.columns(2)
                 split_at = (len(items) + 1) // 2
                 with left:
                     for item in items[:split_at]:
-                        st.page_link(item["path"], label=item["label"], icon=item["icon"])
+                        st.page_link(item["path"], label=tr(item["label_key"]), icon=item["icon"])
                 with right:
                     for item in items[split_at:]:
-                        st.page_link(item["path"], label=item["label"], icon=item["icon"])
+                        st.page_link(item["path"], label=tr(item["label_key"]), icon=item["icon"])
             st.markdown("</div>", unsafe_allow_html=True)
 
     with nav_cols[-1]:
         st.markdown('<div class="top-nav-cta">', unsafe_allow_html=True)
-        st.page_link("pages/21_AI_Agro_Assistant.py", label="Open AI Assistant", icon="🤖")
+        st.page_link("pages/21_AI_Agro_Assistant.py", label=tr("open_ai_assistant"), icon="🤖")
         st.markdown("</div>", unsafe_allow_html=True)
+
+
+def render_mobile_menu():
+    with st.container(key="mobile_dock"):
+        st.markdown('<div class="mobile-dock-shell"></div>', unsafe_allow_html=True)
+        m1, m2, m3, m4, m5 = st.columns(5, gap="small")
+
+        with m1:
+            st.page_link("pages/01_Home.py", label=tr("nav_home"), icon="🏠")
+        with m2:
+            st.page_link("pages/02_NDVI_Auto.py", label=tr("nav_ndvi"), icon="🌿")
+        with m3:
+            st.page_link("pages/03_Field_Manager_Map.py", label=tr("nav_map"), icon="🗺️")
+        with m4:
+            st.page_link("pages/21_AI_Agro_Assistant.py", label=tr("nav_ai"), icon="🤖")
+        with m5:
+            with st.popover(tr("more"), use_container_width=True):
+                render_language_picker(widget_key="lang_select_mobile")
+                st.caption(tr("menu_sections"))
+                for section, items in MENU_SECTIONS:
+                    st.caption(tr(section))
+                    for item in items:
+                        st.page_link(item["path"], label=tr(item["label_key"]), icon=item["icon"])
 
 

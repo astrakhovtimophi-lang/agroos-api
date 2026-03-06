@@ -2,6 +2,7 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
+from i18n import tr
 from streamlit_folium import st_folium
 
 from agro_utils import add_event, append_telematics, field_names_and_features
@@ -9,7 +10,7 @@ from styles import apply_styles
 
 apply_styles()
 
-st.title("🌾 Yield Map Import")
+st.title(tr("module_yield_import"))
 st.caption("Import yield maps from machinery/telematics CSV and analyze low/medium/high productivity zones.")
 
 field_names, _ = field_names_and_features()

@@ -1,4 +1,5 @@
 ﻿import streamlit as st
+from i18n import tr
 
 from agro_assistant import (
     CROP_OPTIONS,
@@ -12,7 +13,7 @@ from styles import apply_styles
 
 apply_styles()
 
-st.title("🤖 AI Agro Assistant")
+st.title(tr("module_ai_assistant"))
 st.caption("Expert assistant for crop decisions: NDVI, nutrition, disease, weather, economics, and operations.")
 
 names, _ = field_names_and_features()

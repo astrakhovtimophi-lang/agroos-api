@@ -2,13 +2,14 @@
 
 import pandas as pd
 import streamlit as st
+from i18n import tr
 
 from agro_utils import load_users, now_iso, save_users
 from styles import apply_styles
 
 apply_styles()
 
-st.title("👤 Users & Access")
+st.title(tr("module_users_access"))
 st.caption("Local multi-user access with roles: admin, agronomist, viewer.")
 
 ROLE_OPTIONS = ["admin", "agronomist", "viewer"]

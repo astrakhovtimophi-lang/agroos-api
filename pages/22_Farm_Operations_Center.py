@@ -5,6 +5,7 @@ from pathlib import Path
 import folium
 import pandas as pd
 import streamlit as st
+from i18n import tr
 from streamlit_folium import st_folium
 
 from agro_utils import (
@@ -32,7 +33,7 @@ from styles import apply_styles
 
 apply_styles()
 
-st.title("🧭 Farm Operations Center")
+st.title(tr("module_ops_center"))
 st.caption("Unified workspace: crop plan, operations, machinery, telematics, warehouse, scouting and safety checks.")
 
 field_names, field_feats = field_names_and_features()

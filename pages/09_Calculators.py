@@ -3,7 +3,7 @@ from i18n import tr
 from styles import apply_styles
 
 apply_styles()
-st.title(tr("calculators"))
+st.title(tr("module_calculators"))
 
 tab1, tab2, tab3 = st.tabs(["Yield/ROI", "Seeding rate", "Spray mix"])
 

@@ -1,4 +1,5 @@
 ﻿import streamlit as st
+from i18n import tr
 from styles import apply_styles
 
 apply_styles()
@@ -24,7 +25,7 @@ except Exception as e:
     st.error("rasterio missing/broken. For Yield page we need it for NDVI crop. Run pip install -r requirements.txt")
     st.stop()
 
-st.title("🌾 Yield prediction (beta)")
+st.title(tr("module_yield_prediction"))
 st.caption("Простой прогноз: NDVI (сцена) + почва (SoilGrids) + погода (Open-Meteo). Это НЕ точный агросервис, но даёт полезный ориентир.")
 
 FIELDS_FILE = Path("data") / "fields.geojson"

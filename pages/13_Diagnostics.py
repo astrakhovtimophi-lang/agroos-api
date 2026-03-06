@@ -6,7 +6,7 @@ import os
 import importlib
 
 apply_styles()
-st.title(tr("diagnostics"))
+st.title(tr("module_diagnostics"))
 
 st.write("Python:", sys.version)
 st.write("Working dir:", os.getcwd())

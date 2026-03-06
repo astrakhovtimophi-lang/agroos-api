@@ -1,5 +1,6 @@
 ﻿import pandas as pd
 import streamlit as st
+from i18n import tr
 
 from agro_utils import (
     load_compliance,
@@ -12,7 +13,7 @@ from styles import apply_styles
 
 apply_styles()
 
-st.title("🏠 AgroOS Command Home")
+st.title(tr("module_home"))
 st.caption("Daily workflow hub for field monitoring, planning and execution.")
 
 c1, c2, c3, c4, c5 = st.columns(5)

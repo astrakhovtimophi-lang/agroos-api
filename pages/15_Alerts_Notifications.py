@@ -3,13 +3,14 @@
 import pandas as pd
 import requests
 import streamlit as st
+from i18n import tr
 
 from agro_utils import append_alert_log, load_alert_rules, load_tasks, now_iso, save_alert_rules
 from styles import apply_styles
 
 apply_styles()
 
-st.title("🔔 Smart Alerts")
+st.title(tr("module_smart_alerts"))
 st.caption("Weather risk alerts + planner reminders.")
 
 saved = load_alert_rules()

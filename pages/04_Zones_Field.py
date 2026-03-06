@@ -15,13 +15,13 @@ from shapely.geometry import mapping, shape
 from shapely.ops import transform
 
 from agro_utils import add_event, add_ndvi_record, field_names_and_features
-from i18n import ensure_lang
+from i18n import ensure_lang, tr
 from styles import apply_styles
 
 apply_styles()
 ensure_lang()
 
-st.title("🧩 Zones (Field zoning from NDVI)")
+st.title(tr("module_vra_zones"))
 st.caption("Build NDVI for a saved field, split it into zones, and export VRA layers.")
 
 try:

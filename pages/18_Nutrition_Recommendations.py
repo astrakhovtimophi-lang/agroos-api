@@ -2,6 +2,7 @@
 
 import pandas as pd
 import streamlit as st
+from i18n import tr
 
 from agro_utils import (
     add_event,
@@ -14,7 +15,7 @@ from styles import apply_styles
 
 apply_styles()
 
-st.title("🌱 Nutrition Recommendations")
+st.title(tr("module_nutrition"))
 st.caption("NPK plan based on target yield, soil values, NDVI and rainfall forecast.")
 
 field_names, _ = field_names_and_features()

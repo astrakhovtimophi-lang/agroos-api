@@ -3,6 +3,7 @@ from pathlib import Path
 
 import folium
 import streamlit as st
+from i18n import tr
 from folium.plugins import Draw
 from streamlit_folium import st_folium
 
@@ -10,7 +11,7 @@ from styles import apply_styles
 
 apply_styles()
 
-st.title("🗺 Field Manager (Map)")
+st.title(tr("module_field_manager"))
 
 DATA = Path("data")
 DATA.mkdir(exist_ok=True)

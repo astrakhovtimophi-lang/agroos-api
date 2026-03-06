@@ -1,4 +1,5 @@
 ﻿import streamlit as st
+from i18n import tr
 from styles import apply_styles
 
 apply_styles()
@@ -12,7 +13,7 @@ import tifffile
 from io import BytesIO
 from shapely.geometry import shape
 
-st.title("Soil (SoilGrids)")
+st.title(tr("module_soilgrids"))
 
 FIELDS_FILE = Path("data") / "fields.geojson"
 

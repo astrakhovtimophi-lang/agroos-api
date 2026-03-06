@@ -2,6 +2,7 @@
 
 import pandas as pd
 import streamlit as st
+from i18n import tr
 from pyproj import Transformer
 from shapely.geometry import shape
 from shapely.ops import transform
@@ -19,7 +20,7 @@ from styles import apply_styles
 
 apply_styles()
 
-st.title("🧭 Field Groups + Compare")
+st.title(tr("module_field_groups"))
 st.caption("Group fields, rank them by metrics, and compare performance side by side.")
 
 field_names, field_feats = field_names_and_features()

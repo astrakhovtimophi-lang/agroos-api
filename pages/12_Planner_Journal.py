@@ -6,7 +6,7 @@ from pathlib import Path
 from datetime import datetime
 
 apply_styles()
-st.title(tr("planner"))
+st.title(tr("module_planner"))
 
 DATA = Path("data")
 DATA.mkdir(exist_ok=True)

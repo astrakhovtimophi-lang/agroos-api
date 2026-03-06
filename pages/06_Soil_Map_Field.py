@@ -1,4 +1,5 @@
 ﻿import streamlit as st
+from i18n import tr
 from styles import apply_styles
 
 apply_styles()
@@ -10,7 +11,7 @@ import folium
 from folium.raster_layers import WmsTileLayer
 from streamlit_folium import st_folium
 
-st.title("🧱 Soil Map Field (GIS layers)")
+st.title(tr("module_soil_map"))
 st.caption("Слои как в GIS: спутник/OSM, подписи, граница поля, центроид, несколько слоёв SoilGrids + прозрачность.")
 
 FIELDS_FILE = Path("data") / "fields.geojson"

@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import streamlit as st
+from i18n import tr
 from folium.plugins import Draw
 from pyproj import Transformer
 from pystac_client import Client
@@ -20,7 +21,7 @@ from styles import apply_styles
 
 apply_styles()
 
-st.title("🌿 NDVI Pro (Sentinel-2)")
+st.title(tr("module_ndvi_pro"))
 st.caption("Pro workflow: scene quality ranking, cloud masking (SCL), multi-scene composite, advanced metrics and export.")
 
 try:
