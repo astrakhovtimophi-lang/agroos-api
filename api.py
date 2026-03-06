@@ -1,10 +1,11 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
+﻿from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
-app = FastAPI(title="AgroOS API", version="1.0")
+from agro_assistant import generate_expert_response
 
-# Чтобы Streamlit/Flutter могли обращаться к API без проблем
+app = FastAPI(title="AgroOS API", version="2.0")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -13,20 +14,35 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 class AdviceReq(BaseModel):
-    crop: str
-    stage: str
+    crop: str = "Wheat"
+    stage: str = "Vegetative"
     symptoms: str
+    field: str = "General"
+    mode: str = "Expert"
+    include_weather: bool = False
+
 
 @app.get("/")
 def home():
-    return {"ok": True, "service": "AgroOS API"}
+    return {"ok": True, "service": "AgroOS API", "version": "2.0"}
+
 
 @app.post("/advice")
 def advice(req: AdviceReq):
-    # ВАЖНО: тут потом будет твой AI/логика
+    result = generate_expert_response(
+        question=req.symptoms,
+        field_name=req.field or "General",
+        crop=req.crop,
+        stage=req.stage,
+        mode=req.mode,
+        include_weather=bool(req.include_weather),
+    )
     return {
         "crop": req.crop,
         "stage": req.stage,
-        "advice": f"По симптомам '{req.symptoms}' нужно проверить питание и болезни. Дай больше деталей."
+        "field": req.field,
+        "intents": result.get("intents", []),
+        "advice": result.get("answer", ""),
     }

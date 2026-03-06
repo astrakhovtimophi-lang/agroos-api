@@ -1,0 +1,22 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+data/
+agroos.db
+*.log
+
+.streamlit/secrets.toml
+
+archive_pages/
+main_backup*.py
+styles_backup*.py
+main_broken*.py
+main_before_fix.py
+agroos_main_30k.py
+
+# Local notes
+# Code Citations.md
+\# Code Citations.md
